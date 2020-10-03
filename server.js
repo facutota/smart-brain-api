@@ -20,11 +20,11 @@ const db = knex({
   pool: { min: 0, max: 7}
 });
 
-db.select('*').from('table.users')
+/*db.select('*').from('table.users')
 		.then(data => {
 			console.log(data);
 		}).catch(err =>
-			console.log("error"));
+			console.log("error"));*/
 
 
 const app = express();
@@ -32,7 +32,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get('/', (req, res)=> { res.send(db.users) });
+app.get('/', (req, res)=> { res.send('it is working') });
 app.post('/signin', signin.handleSignin(db, bcrypt));
 app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) });
 app.get('/profile/:id', (req, res) => { profile.handleProfileGet(req, res, db)});
